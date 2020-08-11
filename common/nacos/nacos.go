@@ -8,11 +8,10 @@ import (
 	"github.com/nacos-group/nacos-sdk-go/model"
 	"github.com/nacos-group/nacos-sdk-go/vo"
 	"github.com/pkg/errors"
-	"saas-demo/pkg/conf"
+	"saas-demo/common/conf"
 )
 
 type NacosClient struct {
-	Conf         *conf.NacosConfig
 	namingClient naming_client.INamingClient
 	configClient config_client.IConfigClient
 }

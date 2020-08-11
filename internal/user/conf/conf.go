@@ -6,7 +6,7 @@ import (
 	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"os"
-	"saas-demo/pkg/conf"
+	"saas-demo/common/conf"
 	"saas-demo/pkg/util"
 	"strings"
 )
@@ -34,7 +34,7 @@ var (
 type config struct {
 	Nacos       conf.NacosConfig       `yaml:"nacos"`
 	HTTPServer  conf.HTTPServerConfig  `yaml:"http"`
-	Discovery   conf.DiscoveryConfig   `yaml:"discovery"`
+	Discovery   conf.DiscoveryConfig   `yaml:"nacos"`
 	Application conf.ApplicationConfig `yaml:"application"`
 	CfgFile     string
 }

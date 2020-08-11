@@ -41,7 +41,7 @@ type HTTPServerConfig struct {
 	WriteTimeout time.Duration `yaml:"write_timeout"`
 }
 
-// DiscoveryConfig is discovery service config.
+// DiscoveryConfig is nacos service config.
 type DiscoveryConfig struct {
 	GroupName   string  `yaml:"group_name"`
 	ClusterName string  `yaml:"cluster_name"`

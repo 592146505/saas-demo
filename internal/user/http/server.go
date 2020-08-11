@@ -5,7 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http/httputil"
 	"runtime"
-	"saas-demo/pkg/conf"
+	"saas-demo/common/conf"
 	"strconv"
 	"time"
 )

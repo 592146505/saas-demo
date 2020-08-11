@@ -5,9 +5,9 @@ import (
 	"fmt"
 	"github.com/nacos-group/nacos-sdk-go/model"
 	"github.com/nacos-group/nacos-sdk-go/vo"
+	"saas-demo/common/nacos"
 	conf2 "saas-demo/internal/user/conf"
 	"saas-demo/internal/user/http"
-	"saas-demo/pkg/discovery"
 )
 
 func main() {
@@ -36,16 +36,16 @@ func main() {
 		GroupName:   conf2.Discovery.GroupName,
 	})
 	if err == nil {
-		js, _ := json.MarshalIndent(service,"","	")
+		js, _ := json.MarshalIndent(service, "", "	")
 		fmt.Printf("GetService server[%v]\n", string(js))
 	}
 	services, err := nacosClient.GetAllServicesInfo(vo.GetAllServiceInfoParam{
-		GroupName:   conf2.Discovery.GroupName,
-		PageNo: 1,
-		PageSize: 20,
+		GroupName: conf2.Discovery.GroupName,
+		PageNo:    1,
+		PageSize:  20,
 	})
 	if err == nil {
-		js, _ := json.MarshalIndent(services,"","	")
+		js, _ := json.MarshalIndent(services, "", "	")
 		fmt.Printf("GetAllServicesInfo servers[%v]\n", string(js))
 	}
 	instances, err := nacosClient.SelectAllInstances(vo.SelectAllInstancesParam{
@@ -53,7 +53,7 @@ func main() {
 		GroupName:   conf2.Discovery.GroupName,
 	})
 	if err == nil {
-		js, _ := json.MarshalIndent(instances,"","	")
+		js, _ := json.MarshalIndent(instances, "", "	")
 		fmt.Printf("SelectAllInstances instances[%v] \n", string(js))
 	}
 	instances, err = nacosClient.SelectInstances(vo.SelectInstancesParam{
@@ -62,15 +62,24 @@ func main() {
 		HealthyOnly: true,
 	})
 	if err == nil {
-		js, _ := json.MarshalIndent(instances,"","	")
+		js, _ := json.MarshalIndent(instances, "", "	")
 		fmt.Printf("SelectInstances instances[%v] \n", string(js))
+	}
+
+	instance, err := nacosClient.SelectOneHealthyInstance(vo.SelectOneHealthInstanceParam{
+		ServiceName: conf2.Application.ServiceName,
+		GroupName:   conf2.Discovery.GroupName,
+	})
+	if err == nil {
+		js, _ := json.MarshalIndent(instance, "", "	")
+		fmt.Printf("SelectOneHealthyInstance instance[%v] \n", string(js))
 	}
 
 	err = nacosClient.Subscribe(&vo.SubscribeParam{
 		ServiceName: conf2.Application.ServiceName,
 		GroupName:   conf2.Discovery.GroupName,
 		SubscribeCallback: func(services []model.SubscribeService, err error) {
-			js, _ := json.MarshalIndent(instances,"","	")
+			js, _ := json.MarshalIndent(services, "", "	")
 			fmt.Printf("Subscribe services[%v] \n", string(js))
 		},
 	})
