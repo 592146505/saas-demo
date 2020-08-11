@@ -34,7 +34,7 @@ var (
 type config struct {
 	Nacos       conf.NacosConfig       `yaml:"nacos"`
 	HTTPServer  conf.HTTPServerConfig  `yaml:"http"`
-	Discovery   conf.DiscoveryConfig   `yaml:"nacos"`
+	Discovery   conf.DiscoveryConfig   `yaml:"discovery"`
 	Application conf.ApplicationConfig `yaml:"application"`
 	CfgFile     string
 }

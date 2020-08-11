@@ -68,7 +68,6 @@ func main() {
 
 	instance, err := nacosClient.SelectOneHealthyInstance(vo.SelectOneHealthInstanceParam{
 		ServiceName: conf2.Application.ServiceName,
-		GroupName:   conf2.Discovery.GroupName,
 	})
 	if err == nil {
 		js, _ := json.MarshalIndent(instance, "", "	")
